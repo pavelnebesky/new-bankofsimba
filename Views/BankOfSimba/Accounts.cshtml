@@ -1,0 +1,101 @@
+﻿@using bankOfSimba.Models;
+@model List<BankAccount>
+
+@{
+    Layout = "_Layout";
+}
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Account no.
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Balance
+            </th>
+            <th>
+                Animal Type
+            </th>
+            <th>
+                Is King?
+            </th>
+            <th>
+                Is Good?
+            </th>
+            <th>
+                Raise
+            </th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count; i++)
+
+    {
+        <tr>
+            <td>
+                @(i + 1).
+            </td>
+            <td>
+                @Model[i].Name
+            </td>
+            <td>
+                @Model[i].Balance Zebras
+            </td>
+            <td>
+                @Model[i].AnimalType
+            </td>
+            <td>
+                @if (Model[i].IsKing)
+                {
+                    <div class="king"> is King </div>
+                }
+            </td>
+            <td>
+                @if (Model[i].IsGood)
+                {
+                    <p>Good One</p>
+                }
+                else
+                {
+                    @("Bad Guy")
+                }
+            </td>
+            <td>
+                <a href="/accounts/?raise=True&id=@i">
+                Raise ballance
+                </a>
+
+            </td>
+        </tr>
+    }
+
+    </table>
+
+    
+        <form method="post" action="/accounts/">
+            <p>@(Model.Count+1).</p>
+            <input type="text" name="name" />
+            <input type="number" name="ballance" />
+            <input type="text" name="animalType" />
+            <input type="checkbox" name="isKingStr" value="checked" />
+            <input type="checkbox" name="isGoodStr" value="checked" />
+            <button>new account</button>
+        </form>
+       
+
+
+<br>
+
+
+
+@{
+}
+
+
